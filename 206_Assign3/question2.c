@@ -6,50 +6,37 @@
 
 int main(){
 	char prompt[50] = "Welcome to your custom shell";
-	char input[20];
+	char input[100];
 	char s[2] = " ";
 	char *token;
 	
-
+	
 	while(1){
 
 		
 		printf("%s", prompt);
-		scanf("%s", input);
+		fgets(input, 99, stdin);
+		input[strlen(input) - 1] = '\0';
+		
 		//printf("%s", input);
-		if (strcmp(input, "ls") == 0){
-			system("ls");
-			continue;
-		}
-		else if (strcmp(input, "QUIT") == 0){
+		
+		if (strcmp(input, "QUIT") == 0){
 			break;
 		}
-		else{
+		else if (strcmp(input, "SET PROMPT") == 0){
 			token = strtok(input, s);
-			if (strcmp(token, "SET") == 0){
-				while(token != NULL){
-				printf("%s\n", token);
-				token = strtok(NULL, s);
-				if (strcmp(token, "PROMPT" == 0)){
-					token = strtok(NULL, s);
-					strcpy(prompt, token);
-					continue;
-				}
-
+			printf(token);
+		}else{
+			system(input);
+			continue;
 			}
-
-
-			}
-			
-
-
-
-
 		}
+	}
 
 
-}
-}
+
+
+
 
 
 
